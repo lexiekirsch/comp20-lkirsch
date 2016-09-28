@@ -1,0 +1,21 @@
+
+/* top left 1200+ */
+@media only screen {
+	.homer {width:312.5px; height:312.5px;
+		background:url(homer.jpg) 0px 0px;}
+}
+/* top right 801 - 1200 */
+@media only screen and (max-width: 1200px) {
+	.homer {width:312.5px; height:312.5px;
+		background:url(homer.jpg) 312.5px 0px;}
+}
+/* bottom left 401-800 */
+@media only screen and (max-width: 800px) {
+	.homer {width:312.5px; height:312.5px;
+		background:url(homer.jpg) 0px 312.5px;}
+}
+/* bottom right 0-400 */
+@media only screen and (max-width: 400px) {
+	.homer {width:312.5px; height:312.5px;
+		background:url(homer.jpg) 312.5px 312.5px;}
+}
