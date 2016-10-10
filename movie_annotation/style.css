@@ -1,0 +1,16 @@
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-align: center;
+}
+
+#classic_video {
+	height: 450px;
+	display: block;
+	margin: 0px auto;
+}
+
+#movie_quotes {
+	width: 600px;
+	display: block;
+	margin: 0px auto;
+}

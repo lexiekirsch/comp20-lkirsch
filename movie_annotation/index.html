@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Classic Movie</title>
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+	<h1 id="title">Classic Movie</h1>
+
+	<video src="https://www.cs.tufts.edu/comp/20/classic.mp4" id="classic_video" controls></video>
+	<div id="movie_quotes"></div>
+
+	<script>
+		
+		quote = document.getElementById("movie_quotes");
+		var video = document.getElementById("classic_video");
+	
+		video.addEventListener("timeupdate", function() {
+			if (video.currentTime > 24 && video.currentTime < 31)
+				quote.innerHTML = list[0];
+			else if (video.currentTime > 31 && video.currentTime < 34)
+				quote.innerHTML = list[1];
+			else if (video.currentTime > 34 && video.currentTime < 36)
+				quote.innerHTML = list[2];
+			else if (video.currentTime > 36 && video.currentTime < 39)
+				quote.innerHTML = list[3];
+			else if (video.currentTime > 39 && video.currentTime < 42)
+				quote.innerHTML = list[4];
+			else if (video.currentTime > 42 && video.currentTime < 44)
+				quote.innerHTML = list[5];
+			else if (video.currentTime > 44 && video.currentTime < 47)
+				quote.innerHTML = list[6];
+			else if (video.currentTime > 47 && video.currentTime < 50)
+				quote.innerHTML = list[7];
+			else if (video.currentTime > 50 && video.currentTime < 52)
+				quote.innerHTML = list[8];
+			else if (video.currentTime > 52 && video.currentTime < 53)
+				quote.innerHTML = list[9];
+			else if (video.currentTime > 53 && video.currentTime < 57)
+				quote.innerHTML = list[10];
+			else if (video.currentTime > 57 && video.currentTime < 58)
+				quote.innerHTML = list[11];
+			else if (video.currentTime > 58 && video.currentTime < 61)
+				quote.innerHTML = list[12];
+			else if (video.currentTime > 61 && video.currentTime < 64)
+				quote.innerHTML = list[13];
+			else if (video.currentTime > 64 && video.currentTime < 70)
+				quote.innerHTML = list[14];
+			else if (video.currentTime > 70 && video.currentTime < 72)
+				quote.innerHTML = list[15];
+			else if (video.currentTime > 72 && video.currentTime < 74)
+				quote.innerHTML = list[16];
+			else if (video.currentTime > 74 && video.currentTime < 89)
+				quote.innerHTML = list[17];
+			else if (video.currentTime > 89 && video.currentTime < 91)
+				quote.innerHTML = list[18];
+			else
+				quote.innerHTML = "";
+		}, false);
+
+		list = ["Igor: DR. FRANKENSTEIN?!?!?", 
+		"Dr. Frederick Frankenstein: Frokensteen.", 
+		"Igor: You're putting me on.", 
+		'Dr. Frederick Frankenstein: No, it pronounced, "Frokensteen".', 
+		"Igor: Do you also say Froaderick?", 
+		'Dr. Frederick Frankenstein: No . . . "Frederick."', 
+		"Igor: Well, why isn't it 'Froaderick Frokensteen'?", 
+		"Dr. Frederick Frankenstein: It isn't, it's 'Frederick Frokensteen'", 
+		"Igor: I see.", 
+		"Dr. Frederick Frankenstein: You must be Igor. [He pronounces it ee-gor.]", 
+		"Igor: No, it's pronounced 'eye-gor.'", 
+		"Dr. Frederick Frankenstein: But they told me it was 'ee-gor'...", 
+		"Igor: Well, they were wrong then, weren't they?", 
+		"Dr. Frederick Frankenstein: Uh, you were sent here by Herr Falkstein, weren't you?", 
+		"Igor: Yes. My grandfather used to work for your grandfather.", 
+		"Dr. Frederick Frankenstein: How nice.", 
+		"Igor: Of course the rates have gone up.", 
+		"Dr. Frederick Frankenstein: Of course, of course, I'm sure we'll get along splendidly. Oh, I uh, you know I don't mean to embarrass you, but I'm rather a brilliant surgeon. Perhaps I can help you with that hump.", 
+		"Igor: What hump?"];
+
+	</script>
+
+</body>
+
+</html>	
