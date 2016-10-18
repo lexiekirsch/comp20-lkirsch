@@ -28,7 +28,6 @@ function addMe() {
 			google.maps.event.addListener(marker, 'click', function() {
 				infowindow.setContent(marker.title);
 				infowindow.open(map, marker);
-				addLineTo(closestCoord);
 			});
 		});
 	}
@@ -121,6 +120,7 @@ function findClosestStop() {
 			closestCoord = [stops[i][1], stops[i][2]];
 		}
 	}
+	addLineTo(closestCoord);
 	return "Nearest station is " + stopname + ", which is " + d + " miles away";
 }
 
@@ -167,4 +167,18 @@ function addLineTo(coord) {
 	});
 	
 	line.setMap(map);
+}
+
+/* HERE WE ARE */
+function MBTAschedule() {
+	request = new XMLHttpRequest();
+	request.open("get", "https://rocky-taiga-26352.herokuapp.com/redline.json", true);
+	/* request.onreadystatechange = function() { ... }; */
+	request.send();
+	if (request.readyState == 4 && request.status == 200) {
+		theData = request.responseText;
+		info = JSON.parse(theData);
+		console.log(info);
+		/* set info window to data ??? */
+	}
 }
