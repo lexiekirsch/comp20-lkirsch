@@ -22,7 +22,7 @@ function addMe() {
 			map.panTo(me); /* centers map on your location */
 			marker = new google.maps.Marker({
 				position: {lat: myLat, lng: myLng},
-				title: "I am here"
+				title: findClosestStop()
 			});
 			marker.setMap(map);
 			google.maps.event.addListener(marker, 'click', function() {
@@ -102,4 +102,52 @@ function addStops() {
 		});
 		line.setMap(map);
 	}
+}
+
+function findClosestStop() {
+	myCoord = [myLat, myLng];
+	nextCoord = [stops[0][1], stops[0][2]];
+	closestCoord = [stops[0][1], stops[0][2]];
+	d = haversineDistance(myCoord, nextCoord);
+	stopname = stops[0][0];
+	
+	for (var i = 0; i < stops.length; i++) {
+		nextCoord = [stops[i][1], stops[i][2]];
+		distance = haversineDistance(myCoord, nextCoord);
+		if (distance < d) {
+			d = distance;
+			stopname = stops[i][0];
+			closestCoord = [stops[i][1], stops[i][2]];
+		}
+	}
+	return "Nearest station is " + stopname + ", which is " + d + " miles away";
+}
+
+/* Modified from http://stackoverflow.com/questions/14560999/using-the-haversine-formula-in-javascript */
+function haversineDistance(coords1, coords2) {
+	/* coords in the form [latitude, longitude] */
+  	function toRad(x) {
+    	return x * Math.PI / 180;
+  	}
+
+  	var lat1 = coords1[0];
+  	var lon1 = coords1[1];
+  	var lat2 = coords2[0];
+  	var lon2 = coords2[1];
+
+  	var R = 6371; // km
+
+	var x1   = lat2 - lat1;
+  	var dLat = toRad(x1);
+  	var x2   = lon2 - lon1;
+  	var dLon = toRad(x2)
+
+  	var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    	Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    	Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  	var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  	var d = R * c;
+
+	d /= 1.60934;
+  	return d;
 }
