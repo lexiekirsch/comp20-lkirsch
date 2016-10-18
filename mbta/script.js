@@ -28,6 +28,7 @@ function addMe() {
 			google.maps.event.addListener(marker, 'click', function() {
 				infowindow.setContent(marker.title);
 				infowindow.open(map, marker);
+				addLineTo(closestCoord);
 			});
 		});
 	}
@@ -150,4 +151,20 @@ function haversineDistance(coords1, coords2) {
 
 	d /= 1.60934;
   	return d;
+}
+
+function addLineTo(coord) {
+	var path = [
+		{ lat: myLat,    lng: myLng }, 
+		{ lat: coord[0], lng: coord[1] }
+	]
+
+	var line = new google.maps.Polyline({
+		path: path,
+		strokeColor: '#0000FF',
+		strokeOpacity: 1.0,
+		strokeWeight: 2
+	});
+	
+	line.setMap(map);
 }
