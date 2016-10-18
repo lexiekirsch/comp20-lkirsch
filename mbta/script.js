@@ -80,6 +80,7 @@ function addStops() {
 		marker.setMap(map);
 		addInfoWindowToStop(marker);
 	}
+	MBTAschedule();
 
 	function addInfoWindowToStop(marker) {
 		google.maps.event.addListener(marker, 'click', function() {
@@ -173,12 +174,13 @@ function addLineTo(coord) {
 function MBTAschedule() {
 	request = new XMLHttpRequest();
 	request.open("get", "https://rocky-taiga-26352.herokuapp.com/redline.json", true);
-	/* request.onreadystatechange = function() { ... }; */
+	request.onreadystatechange = function() { 
+		if (request.readyState == 4 && request.status == 200) {
+			allTheData = request.responseText;
+			data = JSON.parse(allTheData);
+			console.log(data);
+			/* set info window to data */
+		}
+	};
 	request.send();
-	if (request.readyState == 4 && request.status == 200) {
-		theData = request.responseText;
-		info = JSON.parse(theData);
-		console.log(info);
-		/* set info window to data ??? */
-	}
 }
