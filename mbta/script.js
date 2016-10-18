@@ -87,4 +87,19 @@ function addStops() {
 			infowindow.open(map, marker);
 		});
 	}
+
+	for (var i = 0; i < stops.length -1; i++) {
+		var path = [
+			{ lat: stops[i][1],   lng: stops[i][2] }, 
+			{ lat: stops[i+1][1], lng: stops[i+1][2] }
+		]
+
+		var line = new google.maps.Polyline({
+			path: path,
+			strokeColor: '#FF0000',
+			strokeOpacity: 1.0,
+			strokeWeight: 2
+		});
+		line.setMap(map);
+	}
 }
