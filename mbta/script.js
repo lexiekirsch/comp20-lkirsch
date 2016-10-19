@@ -80,10 +80,10 @@ function addStops() {
 		marker.setMap(map);
 		addInfoWindowToStop(marker);
 	}
-	MBTAschedule();
 
 	function addInfoWindowToStop(marker) {
 		google.maps.event.addListener(marker, 'click', function() {
+			MBTAschedule(marker);
 			infowindow.setContent(marker.title);
 			infowindow.open(map, marker);
 		});
@@ -171,15 +171,25 @@ function addLineTo(coord) {
 }
 
 /* HERE WE ARE */
-function MBTAschedule() {
+function MBTAschedule(marker) {
 	request = new XMLHttpRequest();
 	request.open("get", "https://rocky-taiga-26352.herokuapp.com/redline.json", true);
 	request.onreadystatechange = function() { 
 		if (request.readyState == 4 && request.status == 200) {
 			allTheData = request.responseText;
 			data = JSON.parse(allTheData);
-			console.log(data);
-			/* set info window to data */
+
+			/* loop through all running trains */
+			for (i = 0; i < data.TripList.Trips.length; i++) {
+				/* loop through predictions */
+				for (j = 0; j < data.TripList.Trips[i]['Predictions'].length; j++) {
+					nextstop = data.TripList.Trips[i]['Predictions'][j]['Stop'];
+					seconds  = data.TripList.Trips[i]['Predictions'][j]['Seconds'];
+					if (nextstop = marker.title) {
+						marker.title += "<p>" + "Upcoming train in " + seconds + "seconds";
+					}
+				}
+			}
 		}
 	};
 	request.send();
