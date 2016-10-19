@@ -121,8 +121,9 @@ function findClosestStop() {
 			closestCoord = [stops[i][1], stops[i][2]];
 		}
 	}
+	miles = d.toFixed(2); /* two digits */
 	addLineTo(closestCoord);
-	return "Nearest station is " + stopname + ", which is " + d + " miles away";
+	return "Nearest station is " + stopname + ", which is " + miles + " miles away";
 }
 
 /* Modified from http://stackoverflow.com/questions/14560999/using-the-haversine-formula-in-javascript */
