@@ -185,8 +185,9 @@ function MBTAschedule(marker) {
 				for (j = 0; j < data.TripList.Trips[i]['Predictions'].length; j++) {
 					nextstop = data.TripList.Trips[i]['Predictions'][j]['Stop'];
 					seconds  = data.TripList.Trips[i]['Predictions'][j]['Seconds'];
-					if (nextstop = marker.title) {
-						marker.title += "<p>" + "Upcoming train in " + seconds + "seconds";
+					minutes  = Math.round(seconds/60);
+					if (nextstop = marker.title && minutes > 0) {
+						marker.title += "<p>" + "Upcoming train in " + minutes + "minutes";
 					}
 				}
 			}
