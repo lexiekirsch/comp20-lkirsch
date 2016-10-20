@@ -36,7 +36,6 @@ function addMe() {
 	}
 }
 
-
 function addStops() {
     stops = [
       	['Alewife',42.395428,-71.142483],
@@ -69,14 +68,18 @@ function addStops() {
   		['Quincy Adams', 42.233391, -71.007153],
   		['Braintree', 42.2078543, -71.0011385]
 	];
+	addStopMarkers();
+	addStopLines();
+}
 
+function addStopMarkers() {
 	for (var i = 0; i < stops.length; i++) {
 		var stop = stops[i];
 		var marker = new google.maps.Marker({
-				position: {lat: stop[1], lng: stop[2]},
-				map: map,
-				icon: image,
-				title: stop[0]
+			position: {lat: stop[1], lng: stop[2]},
+			map: map,
+			icon: image,
+			title: stop[0]
 		});
 		marker.setMap(map);
 		addInfoWindowToStop(marker);
@@ -87,7 +90,9 @@ function addStops() {
 			MBTAschedule(marker);
 		});
 	}
+}
 
+function addStopLines() {
 	for (var i = 0; i < stops.length -1; i++) {
 		var path = [
 			{ lat: stops[i][1],   lng: stops[i][2] }, 
@@ -177,7 +182,7 @@ function MBTAschedule(marker) {
 		if (request.status != 200) {
 			alert("Error: Click again");
 		}
-		if (request.readyState == 4 && request.status == 200) {
+		else if (request.readyState == 4) {
 			allTheData = request.responseText;
 			data = JSON.parse(allTheData);
 			/* loop through all running trains */
