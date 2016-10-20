@@ -190,10 +190,11 @@ function MBTAschedule(marker) {
 				/* loop through predictions */
 				for (j = 0; j < data.TripList.Trips[i]['Predictions'].length; j++) {
 					nextstop = data.TripList.Trips[i]['Predictions'][j]['Stop'];
+					destination = data.TripList.Trips[i]['Destination'];
 					seconds  = data.TripList.Trips[i]['Predictions'][j]['Seconds'];
 					minutes  = Math.round(seconds/60);
-					if (nextstop = marker.title && minutes > 0) {
-						marker.title += "<p>" + "Upcoming train in " + minutes + "minutes";
+					if (nextstop == marker.title && minutes > 0) {
+						marker.title += "<p>" + "Upcoming train to " + destination + " in " + minutes + "minutes";
 					}
 				}
 			}
