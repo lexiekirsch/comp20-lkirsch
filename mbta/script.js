@@ -177,7 +177,7 @@ function addLineTo(coord) {
 
 function MBTAschedule(marker) {
 	request = new XMLHttpRequest();
-	request.open("get", "https://rocky-taiga-26352.herokuapp.com/redline.json", true);
+	request.open("get", "https://gentle-taiga-48945.herokuapp.com/redline.json", true);
 	request.onreadystatechange = function() {
 		if (request.status != 200) {
 			alert("Error: Click again");
@@ -194,7 +194,7 @@ function MBTAschedule(marker) {
 					seconds  = data.TripList.Trips[i]['Predictions'][j]['Seconds'];
 					minutes  = Math.round(seconds/60);
 					if (nextstop == marker.title && minutes > 0) {
-						marker.title += "<p>" + "Upcoming train to " + destination + " in " + minutes + "minutes";
+						marker.title += "<p>" + "Upcoming train to " + destination + " in " + minutes + " minutes";
 					}
 				}
 			}
