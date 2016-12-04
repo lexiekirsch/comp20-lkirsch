@@ -21,11 +21,11 @@ app.post('/submit.json', function(req, res) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
-	if (req.body.username != null && req.body.username != "null" && req.body.username != '' && req.body.score != null && req.body.grid != null) {
+	var name = req.body.username;
+	var score = req.body.score; 
+	var grid = req.body.grid;
 
-		var name = req.body.username;
-		var score = req.body.score; 
-		var grid = req.body.grid;
+	if (name != undefined && score != undefined && grid != undefined && validator.isAlphanumeric(name) && score > 0 && validator.isJSON(grid)) {
 
 		var toInsert = {
 			"username": name,
