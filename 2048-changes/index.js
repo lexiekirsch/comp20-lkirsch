@@ -4,6 +4,7 @@ var cool = require('cool-ascii-faces');
 var request = require('request');
 var express = require('express');
 var bodyParser = require('body-parser');
+var validator = require('validator');
 var app = express();
 
 app.use(bodyParser.json());
@@ -22,7 +23,7 @@ app.post('/submit.json', function(req, res) {
 	res.header("Access-Control-Allow-Headers", "X-Requested-With");
 
 	var name = req.body.username;
-	var score = req.body.score; 
+	var score = parseInt(req.body.score);
 	var grid = req.body.grid;
 
 	if (name != undefined && score != undefined && grid != undefined && validator.isAlphanumeric(name) && score > 0 && validator.isJSON(grid)) {
@@ -48,6 +49,9 @@ app.post('/submit.json', function(req, res) {
 				}
 			});
 		});
+	}
+	else {
+		res.send("Data did not go through");
 	}
 });
 
@@ -76,7 +80,7 @@ app.get('/scores.json', function(req, res) {
 	}
 	else {
 		db.collection('scores', function(er, collection) {
-			collection.find( { "username": username } ).sort( {score: -1 } ).toArray(function(err, results) {
+			collection.find({ "username": username }, { sort: [["score", 'desc']]}).toArray(function(err, results) {
 				res.send(results);
 			});
 		});
@@ -89,7 +93,7 @@ app.get('/', function(req, res) {
 	var indexPage = '';
 	var array = [];
 	db.collection('scores', function(er, collection) {
-		collection.find().sort( {score: -1 } ).toArray(function(err, cursor) {
+		collection.find({}, { sort: [["score", 'desc']] } ).toArray(function(err, cursor) {
 			if (!err) {
 				indexPage += "<!DOCTYPE HTML><html><head>";
 				indexPage += "<title>2048 High Scores</title><style>";
